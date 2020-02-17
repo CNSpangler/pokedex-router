@@ -6,13 +6,39 @@ html {
   background-color: rgb(255, 217, 0);
 }
 
-h1 {
+h1, h2, h3, h4 {
   font-family: fantasy;
   text-align: center;
 }
 
-.switch {
+li {
   display: flex;
   flex-direction: column;
-  background-color: red;
+  align-content: center;
+  float: left;
+}
+
+#pokeBox {
+  background-color: rgb(255, 244, 96);
+  max-width: 250px;
+  max-height: 375px;
+  float: left;
+  border: solid 3px black;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+#pokeBall {
+  background-image: url('./pokeball.png');
+  max-width: 100%;
+  background-size: 75%;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 3px;
+}
+
+img {
+  max-width: 75%;
+  margin-left: 13%;
+  border-radius: 50%;
 }

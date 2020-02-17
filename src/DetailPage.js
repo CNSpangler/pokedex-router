@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import request from 'superagent';
 import PokeItem from './PokeItem.js';
+import './Detail.css';
 
 export default class DetailPage extends Component {
     state = { 

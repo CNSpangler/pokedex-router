@@ -13,9 +13,13 @@ export default class PokeItem extends Component {
 
         return (
             <li>
-                <h2>{ pokemon }</h2>
-                <img src={ url_image } alt={ pokebase }></img>
-                <h4>Type: {  type_1 }/{ type_2 }</h4>
+                <div id="pokeBox">
+                    <h2>{ pokemon }</h2>
+                        <div id="pokeBall">
+                            <img src={ url_image } alt={ pokebase }></img>
+                        </div>
+                    <h4>Type: {  type_1 }/{ type_2 }</h4>
+                </div>
             </li>
         )
     }
