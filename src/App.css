@@ -28,6 +28,14 @@ li {
   margin: 5px;
 }
 
+#about {
+  background-color: rgb(255, 244, 96);
+  border: solid 3px black;
+  border-radius: 15px;
+  margin: 5px;
+  padding: 5px;
+}
+
 #pokeBall {
   background-image: url('./pokeball.png');
   max-width: 100%;
@@ -40,5 +48,4 @@ li {
 img {
   max-width: 75%;
   margin-left: 13%;
-  border-radius: 50%;
 }
