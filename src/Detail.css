@@ -1,0 +1,14 @@
+* {
+    float: none;
+}
+
+html {
+    display: flex;
+    align-items: center;
+}
+
+/* li {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+} */
