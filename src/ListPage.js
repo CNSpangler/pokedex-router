@@ -6,18 +6,36 @@ import Paging from './Paging.js';
 
 export default class ListPage extends Component {
     state = {
-        searchQuery: '',
+        searchQuery: this.props.match.params.search,
         pokeArray: [],
         numResults: '',
     }
 
     async componentDidMount() {
-        if(!this.props.match.params.search) {
+        if(this.props.match.params.search) {
+            const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.props.match.params.search}`)
+
+            this.setState({pokeArray: data.body.results})
+        } else if(!this.props.match.params.search) {
             const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=`)
 
             this.setState({pokeArray: data.body.results})
         } 
     }
+
+    //should fix problem of Home link not working from search results page
+    async componentWillUpdate(nextProps) {
+        const param = this.props.match.params.search;
+        let nextParam = nextProps.match.params.search;
+        if (param !== nextParam && !nextParam) {
+            this.setState({ 
+                pokeArray: [],
+                searchQuery: ''
+            })         
+        }
+    }
+    
+    handleChange = (event) => this.setState({ searchQuery: event.target.value });
 
     handleSearch = async (e) => {
         e.preventDefault();
@@ -26,24 +44,30 @@ export default class ListPage extends Component {
 
         this.setState({ 
             pokeArray: data.body.results,
-            numResults: data.body.count, 
+            numResults: data.body.count,
         });
+
+        this.props.history.push(this.state.searchQuery);
     }
+
 
     render() {
         return (
             <div className="App">
                 <header>
                     <form onSubmit={this.handleSearch}>
-                    <input onChange={(e) => this.setState({ searchQuery: e.target.value })}/>
-                    <button>Search by Name</button>
+                        <input 
+                            name="search" 
+                            value={this.state.searchQuery}
+                            onChange={this.handleChange} />
+                        <button>Search by Name</button>
                     </form>
                 </header>
                 <Paging numResults={this.state.numResults} />
                 <ul>
                     {
                         this.state.pokeArray.map(pokeObject => 
-                            <Link to={pokeObject.pokemon}>
+                            <Link to={`pokeItem/${pokeObject.pokemon}`} key={`link_${pokeObject._id}`}>
                             <PokeItem pokeObject={pokeObject} key={pokeObject._id} />
                         </Link>)
                     }

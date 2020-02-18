@@ -9,7 +9,7 @@ export default class DetailPage extends Component {
     }
 
     async componentDidMount() {
-        const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.props.match.params.pokemon}`)
+        const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.props.match.params.pokeObject}`)
 
         if (data.body.results) {
             this.setState({ pokeObject: data.body.results[0] })
@@ -17,6 +17,7 @@ export default class DetailPage extends Component {
     }
 
     render() {
+        console.log(this.props.match.params.pokeObject);
         const { pokeObject } = this.state;
 
         return (

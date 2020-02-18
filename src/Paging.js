@@ -52,7 +52,7 @@ export default class Paging extends Component {
             pageToUse = parsedPage;
         }
 
-        if (!numResults) {
+        if (numResults === 0) {
             return <p>This search did not catch any Pokemon. Try something else!</p>
         }
 
