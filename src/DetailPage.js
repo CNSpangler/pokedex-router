@@ -11,8 +11,6 @@ export default class DetailPage extends Component {
     async componentDidMount() {
         const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.props.match.params.pokemon}`)
 
-        console.log(this.props.match.params.pokemon);
-        console.log(data);
         if (data.body.results) {
             this.setState({ pokeObject: data.body.results[0] })
         }

@@ -11,6 +11,14 @@ export default class ListPage extends Component {
         numResults: '',
     }
 
+    async componentDidMount() {
+        if(!this.props.match.params.search) {
+            const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=`)
+
+            this.setState({pokeArray: data.body.results})
+        } 
+    }
+
     handleSearch = async (e) => {
         e.preventDefault();
 
@@ -23,7 +31,6 @@ export default class ListPage extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="App">
                 <header>
@@ -37,7 +44,6 @@ export default class ListPage extends Component {
                     {
                         this.state.pokeArray.map(pokeObject => 
                             <Link to={pokeObject.pokemon}>
-                            {console.log(pokeObject)}
                             <PokeItem pokeObject={pokeObject} key={pokeObject._id} />
                         </Link>)
                     }

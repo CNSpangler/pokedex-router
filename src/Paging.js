@@ -28,6 +28,7 @@ export default class Paging extends Component {
         let pageToUse = this.state.page;
 
         const parsedPage = Number(searchParams.get('page'));
+        
         if (isNaN(parsedPage)) {
             pageToUse = 1;
         } else {
@@ -66,6 +67,7 @@ export default class Paging extends Component {
                 >
                     Previous
                 </button>
+                <span>Page {pageToUse} of {lastPage}</span>
                 <button
                     disabled={pageToUse === lastPage ? 'true' : ''}
                     onClick={() => this.updatePage(1)}
